@@ -1,10 +1,16 @@
+++ * SItemTypeCreationICM.java *
+https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/samples/java/icm/SItemTypeCreationICM.java.htm
+
+++ SItemCreationICM
+https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/samples/java/icm/SItemCreationICM.java.htm
+
+
 ++ https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm014.htm
 
 https://www.ibm.com/support/knowledgecenter/en/SSAHQR_8.4.3/com.ibm.java.doc/com/ibm/mm/sdk/common/DKChildCollection.html
 
 https://www.ibm.com/support/knowledgecenter/en/SSAHQR_8.4.3/com.ibm.cmgmttoc.doc/apihelp.htm
 
-++ https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/samples/java/icm/SItemCreationICM.java.htm
 ++ https://www.ibm.com/support/knowledgecenter/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm090.htm
 
 https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.6.0/com.ibm.programmingcm.doc/dcmap045.html
