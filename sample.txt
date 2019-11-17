@@ -1,0 +1,59 @@
+public void retrieveDoc(String pidString) throws Exception {
+  if(pidString == null || pidString.trim().length() == 0) {
+    throw new Exception("PID string is null - nothing to retrieve.");
+  }
+
+  DKDatastoreICM dsICM = getDataStore();
+
+  DKDDO ddo = dsICM.createDDOFromPID(pidString);
+        
+  DKRetrieveOptionsICM retrOpts = DKRetrieveOptionsICM.createInstance(dsICM);
+  retrOpts.baseAttributes(true);  // Get Base Attributes
+  retrOpts.partsList(true);       // Get the parts
+  retrOpts.resourceContent(true); // Get the document content
+
+  ddo.retrieve(retrOpts.dkNVPair());    // Retrieve from content manager
+
+  // Get the Dynamic Data Objects (DDO) parts 
+  DKParts parts = null;
+  short dataID = ddo.dataId(DKConstant.DK_CM_NAMESPACE_ATTR, DKConstant.DK_CM_DKPARTS); // awesome-sauce
+  if (dataID != 0) {    // 
+    parts = (DKParts)ddo.getData(dataID);
+  } else { // The namespace or data-item name (parts) is not found
+    throw new Exception("The document parts not found for pid: " + pidString);
+  }
+
+  // Get the base ICM content from the parts.
+  DKLobICM icmBase = null;
+  if(parts != null) {
+    // Iterate through the parts.
+    // Whoever develops the IBM java libraries isn't a Java guy, probably a C++ guy
+    // All Java developers know Class names started with a capital letter.
+    dkIterator iter = (dkIterator) parts.createIterator();
+    while (iter.more()) {
+      DKDDO d = (DKDDO)iter.next();
+      if(d instanceof DKLobICM && ICMBASE_OBJECT_TYPE_STR.equalsIgnoreCase(d.getObjectType())) {
+        System.out.println("Found ICMBASE object with mimeType: " + ((DKLobICM)d).getMimeType());
+        icmBase = (DKLobICM) d;
+      }
+    }
+  }
+  short dataIDChild = ddo.dataId(DKConstant.DK_CM_NAMESPACE_CHILD, "subject"); // awesome-sauce
+    if (dataIDChild != 0) {    // found it!
+      DKChildCollection children = 
+  (DKChildCollection) ddo.getData(dataid);
+  //children.addElement(myDDO);       // DKDDO myDDO = dsICM.createChildDDO("nb_doc","subject");
+  } else { // The namespace or data-item name (parts) is not found
+    throw new Exception("The CHILD parts not found for pid: " + pidString);
+  }
+  // Did we find the ICMBASE object? If yes, and it has content, write it to an external file.
+  if(icmBase != null) {
+    byte content[] = icmBase.getContent();
+    if (content != null) {
+      OutputStream os = new FileOutputStream(new File("testdoc2.tiff"));
+      os.write(content);
+    }
+  } else {
+    System.out.println("Oops... can't find the document with pid: " + pidString);
+  }
+} 
