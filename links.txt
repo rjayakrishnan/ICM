@@ -12,6 +12,21 @@ https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/sam
 
 ++ https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm014.htm
 
+---------------------Super important ---------------------------
+DKDDO ddoDocumentChild1 = dsICM.createChildDDO("nb_document", "subject");   
+// createChildDDO(<Overall Item Type>, <Child Component Type>);
+short dataid = ddoDocument.dataId(DKConstant.DK_CM_NAMESPACE_CHILD,ddoDocumentChild1.getObjectType());
+                DKChildCollection children = (DKChildCollection) ddoDocument.getData(dataid);
+
+                if(children==null){ // if no collection exists, create one.
+                    children = new DKChildCollection();
+                    ddoDocument.setData(ddoDocument.dataId(DKConstant.DK_CM_NAMESPACE_CHILD, ddoDocumentChild1.getObjectType()), children);
+                }
+                children.addElement(ddoDocumentChild1); // add children to the collection.  These children
+                children.addElement(ddoDocumentChild2); // are all of the same object type, so they belong
+                children.addElement(ddoDocumentChild3); // to the same children collection.
+               
+---------------------Super important ---------------------------
 https://www.ibm.com/support/knowledgecenter/en/SSAHQR_8.4.3/com.ibm.java.doc/com/ibm/mm/sdk/common/DKChildCollection.html
 
 https://www.ibm.com/support/knowledgecenter/en/SSAHQR_8.4.3/com.ibm.cmgmttoc.doc/apihelp.htm
@@ -23,3 +38,8 @@ https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.6.0/com.ibm.programmingc
 https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm090.htm
 
 https://www.ibm.com/support/knowledgecenter/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm090.htm
+
+Issues to check :
+1. how to prevent NULL cases from creeping into the ddoDocument metadata.
+2. how to check if DKChild collection is present or not ?
+3. 
