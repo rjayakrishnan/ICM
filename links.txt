@@ -8,6 +8,7 @@ https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/sam
 https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm113.htm
 https://www.ibm.com/support/knowledgecenter/SSAHQR_8.4.3/com.ibm.samples.doc/samples/java/icm/SItemRetrievalICM.java.htm
 
+++https://www.ibm.com/support/pages/icm-ddo-applicable-data-item-types
 
 ++ https://www.ibm.com/support/knowledgecenter/en/SSRS7Z_8.5.0/com.ibm.programmingcm.doc/dcmcm014.htm
 
