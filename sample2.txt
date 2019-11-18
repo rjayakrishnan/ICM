@@ -1,0 +1,69 @@
+DKDDO myDocumentDDO = dsICM.createDDO("EmployeeDoc", DKConstantICM.DK_CM_DOCUMENT);
+DKDDO myDDO = dsICM.createChildDDO("EmployeeDoc","Dependent");
+
+short dataid = myDocumentDDO.dataId(DK_CM_NAMESPACE_CHILD,"subject");
+//short dataid = myDocumentDDO.dataId(DK_CM_NAMESPACE_ATTR,"column name");
+//short dataid = myDocumentDDO.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,DKConstant.DK_CM_DKPARTS)
+//DKConstantICM.DK_ICM_SYSTEM_ATTRS or DKConstantICM.DK_ICM_SYSTEM_ATTR
+DKChildCollection children = 
+  (DKChildCollection) myDocumentDDO.getData(dataid);
+                //.getDataName 
+                //.setDataName
+                //.setData(short dataid, Object-value )
+                //.setNull(dataid)
+                //.isNull(dataid)
+                //.
+children.addElement(myDDO); //<-..
+
+
+myDDO.setData(.....);
+myDocumentDDO.add();
+
+/* ADDING ATTRIBUTE CONTENT
+  ------------------------
+DKDDO ddo = dsICM.createDDO("S_withChild", DKConstant.DK_CM_DOCUMENT);
+
+// Set attributes  (Additional attributes set in SItemCreationICM sample)
+ddo.setData(ddo.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,"S_varchar"), 
+  "abcdefg"); 
+ddo.setData(ddo.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,"S_integer"),
+            new Integer("123")); 
+ddo.setData(ddo.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,"S_short"),
+            new Short("5"));
+ddo.setData(ddo.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,"S_time"),    
+            java.sql.Time.valueOf("10:00:00"));
+            */
+
+/* ADDING DKPARTS CONTENT
+  ------------------------
+DKLobICM base = (DKLobICM)dsICM.createDDO("ICMBASE",
+          DKConstantICM.DK_ICM_SEMANTIC_TYPE_BASE);
+base.setMimeType("application/msword");
+base.setContentFromClientFile("SResourceItemICM_Document1.doc");
+DKParts dkParts = (DKParts) ddoDocument.getData(ddoDocument.dataId(DKConstant.DK_CM_NAMESPACE_ATTR,DKConstant.DK_CM_DKPARTS)); 
+dkParts.addElement(base);
+ddoDocument.add(); 
+*/
+
+/* RETRIEVE DKPARTS CONTENT 
+  ------------------------
+short dataid = ddoDocument.dataId(DKConstant.DK_CM_NAMESPACE_ATTR);
+if(dataid==0)
+  throw new Exception("No DKParts Attribute Found!
+ Either item type does not
+    support parts or the document has not been 
+explicitly retrieved.");
+DKParts dkParts = (DKParts)ddoDocument.getData(dataid); //type casting DKParts class into dkParts objects gets us the portion.
+        
+// Go through part list
+dkIterator iter = dkParts.createIterator();
+// Create an Iterator
+
+while(iter.more()){
+ // While there are items left
+    DKDDO part = (DKDDO) iter.next();        
+// Move pointer & return next
+System.out.println("Item Id: "+((DKPidICM)part.
+getPidObject()).getItemId()");
+}
+*/
