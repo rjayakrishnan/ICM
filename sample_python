@@ -1,0 +1,46 @@
+ import pandas as pd
+ data = pd.read_csv("~/Downloads/fileA.txt", header=None)
+ dataB = pd.read_csv("~/Downloads/fileB.txt", header=None)
+ //To import with column header  dataB = pd.read_csv("~/Downloads/fileB.txt")
+ import numpy as nm
+ 
+ //data.head()
+ //data.columns = ["itemid"]
+ //data.head()
+ //dataB.columns = ["itemid"]
+ //dataB.head()
+ 
+ df_all = data.merge(dataB.drop_duplicates(), on=['itemid','itemid'],how='left',indicator=True)
+ //df_all
+ //df_all.columns()
+ //df_all.heads()
+ //df_all.head()
+ df_all.query('_merge == "both"',inplace = True)
+ df_all_both = df_all.query('_merge == "both"',inplace = False) //	merge can take left_only as well
+ df_all_both['itemid'].to_csv('~/Downloads/fileD-dataFrame.txt', index = False)
+ 
+ /*  this will remove dataframe from RAW memory
+ 	import gc
+ 	
+	 del [[df_1,df_2]]
+	gc.collect()
+	df_1=pd.DataFrame()
+	df_2=pd.DataFrame()
+*/
+ -----------------------------------------------------------------------------------------------------------------------------------------------
+ df_all.query('_merge == both',inplace = False)
+ df_all.query('_merge == "both"',inplace = False)
+ df_all_both = df_all.query('_merge == "both"',inplace = False)
+ df_all_both.head()
+ df_all_both = df_all.query('_merge == "both"',inplace = False)['itemid']
+ df_all_both
+ df_all_both = df_all.query('_merge == "both"',inplace = False)
+ df_all_both.size()
+ df_all_both.size
+ df_all_both.size /2
+ df_all_both['itemid']
+ df_all_both
+ df_all_both['itemid'].to_csv('~/Downloads/fileD-dataFrame.txt')
+ df_all_both.head()
+ df_all_both['itemid'].to_csv('~/Downloads/fileD-dataFrame.txt', columns = ["itemid"])
+ df_all_both['itemid'].to_csv('~/Downloads/fileD-dataFrame.txt', index = False)
